@@ -2,6 +2,7 @@
   font-weight: bold;
   display: flex;
   justify-content: end;
+  padding: 15px 35px 0 0 ;
 }
 .logout{
   display: flex;
@@ -9,6 +10,7 @@
   cursor: pointer;
   text-decoration: underline;
   color:#8A8A8A;
+  padding: 5px 35px 0 0 ;
 }
 .body {
     display: flex;
@@ -17,7 +19,6 @@
   }
   .calendar {
     width: 1500px;
-    /* margin: 10px; */
   }
   .header {
     display: flex;
@@ -26,11 +27,13 @@
   }
   .year-month {
     font-size: 35px;
+    margin-left: 660px;
   }
   .nav {
     display: flex;
     border: 1px solid #C4C4C4;
     border-radius: 5px;
+    margin-right: 10px;
   }
   .nav-btn {
     width: 28px;
@@ -58,23 +61,35 @@
     height: 60px;
     background-color: #dddcdc;
     border: 1px solid #C4C4C4;
+    border-bottom: none;
     border-right: none;
     text-align: center;
   }
   .dates {
     width: 1500px;
     display: flex;
+    align-items: center;
     flex-flow: row wrap;  
     height: 500px;
     border-top: 1px solid #C4C4C4;
+    margin-top: -10px;
   }
   .date {
+    display: flex;
     width: calc(99% / 7);
-    height: 100px;
-    text-align: center;
+    min-height: 100px;
     border-bottom: 1px solid #C4C4C4;
     border-left: 1px solid #C4C4C4;
     font-weight: 400;
+  }
+  .date-number{
+    font-weight: bold;
+    padding: 10px 0 0 10px;
+  }
+  .case-number{
+    color: #C4C4C4;
+    text-align: center;
+    padding: 10px 0 0 5px;
   }
 
 .day:nth-child(7n + 1),
@@ -87,110 +102,24 @@
   color: #396EE2;
   border-right: 1px solid #C4C4C4;
 }
-
-
-  /* .reservation{
-    padding:3rem 10vw 0 10vw;
+.booker,.phone,.place-name,.start-date,.end-date,.people-number,.added-people,.dog-number,.added-dog,.etc{
+  color: #474747;
+  padding-top: 30px;
+  font-weight: bold;
+  border-bottom: 2px solid #E5E5E5;
+  margin-right: 10px;
 }
-.id{
-    font-weight: bold;
-    display: flex;
-    justify-content: end;
+.start-date,.end-date,.people-number,.added-people,.dog-number,.added-dog,.etc{
+  display: flex;
+  color:#8A8A8A;
+  justify-content: space-between;
 }
-.logout{
-    display: flex;
-    justify-content: end;   
-    cursor: pointer;
-    text-decoration: underline;
-    color:#8A8A8A;
+.booker{
+  padding-top: 50px;
 }
-.date{
-    text-align: center;
-    padding-bottom: 30px;
-}
-.left-button{
-    margin-right: 20px;
-}
-.year-month{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    color: #000000;
-}
-.right-button{
-    margin-left: 20px;
-} */
-
-/* .calendar {
-    border-collapse: collapse;
-    table-layout: fixed;
-    border-right: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
-    margin: 0 auto;
-    width: 1530px;
-    font-size: 20px;
+.place-name,.people-number{
+  padding-top: 90px;
 }
 
-.calendar th,
-.calendar td {
-    border-top: 1px solid #d3cfcf;
-    border-left: 1px solid #d3cfcf;
-}
 
-th {
-    height: 70px;
-    color: #000000;
-    background-color: #e9e9e9;
-}
 
-.date {
-    font-weight: bold;
-}
-
-.inner {
-    position: relative;
-    height: 70px;
-    padding: 5px;
-}
-
-.date.dimmed {
-    color: #e7e7e7;
-}
-
-em.text {
-    display:block;
-    font-style: normal;
-    margin-top: 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.sunday {
-    color:#f44e4e;
-}
-
-.saturday {
-    color:#3965FF;
-}
-
-.lunar {
-    position: absolute;
-    top: 6px;
-    right: 6px; 
-    color: #bababa;
-}
-
-.today {
-    border: 1px solid #e0e0bf;
-    background-color: #ffffd5;
-}
-
-.blind {
-    position: absolute;
-    clip: rect(0,0,0,0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-} */

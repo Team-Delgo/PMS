@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal'
 import './ReservationManagement.css'
 
-const ReservationManagement = () => {
-  let date = new Date();
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '89%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    height:'100%',
+    width:"400px"
+  },
+};
 
+const ReservationManagement = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    renderCalendar();
+  }, []);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  let date = new Date();
   const renderCalendar = () => {
     const viewYear = date.getFullYear();
     const viewMonth = date.getMonth();
@@ -30,23 +54,27 @@ const ReservationManagement = () => {
         prevDates.unshift(PLDate - i);
       }
     }
-
     for (let i = 1; i < 7 - TLDay; i++) {
       nextDates.push(i);
     }
 
     const dates = prevDates.concat(thisDates, nextDates);
 
-    dates.forEach((date, i) => {
-      dates[i] = `<div class="date">${date}</div>`;
+    const datesElement = dates.map((date, i) => {
+      return (
+        <>
+        <div className="date" onClick={openModal} key={i}>
+          <div className="date-number">{date}</div>
+          <div className="case-number">(3건)  </div>
+        </div>
+        </>
+      );
     });
-
-    document.querySelector(".dates").innerHTML = dates.join("");
+    return datesElement;
   };
 
   const prevMonth = () => {
-    console.log(1)
-    date.setMonth(date.getMonth() - 1);
+    date.setMonth(date.getMonth() - 1); 
     renderCalendar();
   }
 
@@ -59,11 +87,6 @@ const ReservationManagement = () => {
     date = new Date();
     renderCalendar();
   }
-
-
-  useEffect(() => {
-    renderCalendar();
-  }, []);
 
   return (
     <div>
@@ -80,7 +103,7 @@ const ReservationManagement = () => {
                 &lt;
               </button>
               <button className="nav-btn go-today" onClick={goToday}>
-                Today
+                이번달
               </button>
               <button className="nav-btn go-next" onClick={nextMonth}>
                 &gt;
@@ -97,9 +120,57 @@ const ReservationManagement = () => {
               <div className="day">금</div>
               <div className="day saturday">토</div>
             </div>
-            <div className="dates"></div>
+            <div className="dates">{renderCalendar()}</div>
           </div>
         </div>
+      </div>
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          // onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h1 style={{ paddingTop: "50px" }}>예약정보</h1>
+            <div
+              onClick={closeModal}
+              style={{ cursor: "pointer", padding: "80px 10px 0 0" }}
+            >
+              <img
+                className="exit"
+                src={`${process.env.PUBLIC_URL}/assets/images/exit.png`}
+                alt="detail"
+              />
+            </div>
+          </div>
+          <div className="booker">김서은</div>
+          <div className="phone">01012345678</div>
+          <div className="place-name">멍멍하우스</div>
+          <div className="start-date">
+            <div>입실일</div> <div>2022.00.00(월)</div>
+          </div>
+          <div className="end-date">
+            <div>퇴실일</div>
+            <div>2022.00.00(화)</div>
+          </div>
+          <div className="people-number">
+            <div>인원수</div>
+            <div>2명</div>
+          </div>
+          <div className="added-people">
+            <div>인원추가</div> <div>1명</div>
+          </div>
+          <div className="dog-number">
+            <div>반려견수</div> <div>2마리</div>
+          </div>
+          <div className="added-dog">
+            <div>반려견</div>
+            <div>추가1마리</div>
+          </div>
+          <div className="etc">기타</div>
+        </Modal>
       </div>
     </div>
   );
