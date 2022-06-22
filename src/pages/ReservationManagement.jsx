@@ -5,7 +5,7 @@ import './ReservationManagement.css'
 const customStyles = {
   content: {
     top: '50%',
-    left: '89%',
+    left: '85%',
     right: 'auto',
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',

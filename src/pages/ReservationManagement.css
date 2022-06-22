@@ -18,7 +18,7 @@
     align-items: center;
   }
   .calendar {
-    width: 1500px;
+    width: 800px;
   }
   .header {
     display: flex;
@@ -27,13 +27,11 @@
   }
   .year-month {
     font-size: 35px;
-    margin-left: 660px;
   }
   .nav {
     display: flex;
     border: 1px solid #C4C4C4;
     border-radius: 5px;
-    margin-right: 10px;
   }
   .nav-btn {
     width: 28px;
@@ -54,7 +52,7 @@
     margin: 25px 0 10px;
     font-weight: bold;
     font-size: 32px;
-    width: 1500px;
+    width: 800px;
   }
   .day {
     width: calc(99% / 7);
@@ -66,7 +64,7 @@
     text-align: center;
   }
   .dates {
-    width: 1500px;
+    width: 800px;
     display: flex;
     align-items: center;
     flex-flow: row wrap;  
@@ -120,6 +118,3 @@
 .place-name,.people-number{
   padding-top: 90px;
 }
-
-
-
