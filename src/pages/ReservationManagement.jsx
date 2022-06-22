@@ -16,28 +16,40 @@ const customStyles = {
 
 const ReservationManagement = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [datesArray,setDatesArray] = useState("")
+  let date = new Date();
+  const MONTH = date.getMonth();
+  const [month, setMonth] = useState(MONTH+1);
+  const YEAR = date.getFullYear();
+  const [year, setYear] = useState(YEAR);
 
   useEffect(() => {
     renderCalendar();
-  }, []);
+  }, [month]);
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsOpen(true);  
   };
   const closeModal = () => {
     setIsOpen(false);
   };
-  let date = new Date();
-  const renderCalendar = () => {
-    const viewYear = date.getFullYear();
-    const viewMonth = date.getMonth();
 
-    document.querySelector(".year-month").textContent = `${viewYear}년 ${
-      viewMonth + 1
+  const renderCalendar = () => {
+    if (month===13){
+      setMonth(1)
+      setYear(year+1)
+    }
+    else if(month===0){
+      setMonth(12)
+      setYear(year-1)
+    }
+
+    document.querySelector(".year-month").textContent = `${year}년 ${
+      month
     }월`;
 
-    const prevLast = new Date(viewYear, viewMonth, 0);
-    const thisLast = new Date(viewYear, viewMonth + 1, 0);
+    const prevLast = new Date(year, month-1, 0);
+    const thisLast = new Date(year, month, 0);
 
     const PLDate = prevLast.getDate();
     const PLDay = prevLast.getDay();
@@ -70,22 +82,22 @@ const ReservationManagement = () => {
         </>
       );
     });
-    return datesElement;
+    setDatesArray(datesElement)
   };
 
   const prevMonth = () => {
-    date.setMonth(date.getMonth() - 1); 
-    renderCalendar();
+    // date.setMonth(date.getMonth() - 1); 
+    setMonth(month-1)
   }
 
   const nextMonth = () => {
-    date.setMonth(date.getMonth() + 1);
-    renderCalendar();
+    // date.setMonth(date.getMonth() + 1);
+    setMonth(month+1);
   }
 
   const goToday = () => {
-    date = new Date();
-    renderCalendar();
+    // date = new Date();
+    setMonth(MONTH+1);
   }
 
   return (
@@ -120,7 +132,7 @@ const ReservationManagement = () => {
               <div className="day">금</div>
               <div className="day saturday">토</div>
             </div>
-            <div className="dates">{renderCalendar()}</div>
+            <div className="dates">{datesArray}</div>
           </div>
         </div>
       </div>
