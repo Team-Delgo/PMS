@@ -1,0 +1,17 @@
+.day-number{
+  font-weight: bold;
+  padding: 10px 0 0 10px;
+  }
+.case-number{
+  color: #C4C4C4;
+  text-align: center;
+  padding: 10px 0 0 5px;
+}
+.reservation-button{
+  border: none;
+  text-align: center;
+  margin:auto;
+  display:block;
+  margin-top: 15px;
+  height: 35px;
+}

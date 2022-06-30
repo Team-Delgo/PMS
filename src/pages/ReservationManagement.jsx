@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal'
-import './ReservationManagement.css'
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import "./ReservationManagement.css";
+import Day from "../components/Day";
 
 const customStyles = {
   content: {
-    top: '50%',
-    left: '88%',
-    right: 'auto',
-    bottom: 'auto',
-    transform: 'translate(-50%, -50%)',
-    height:'100%',
-    width:"400px"
+    top: "50%",
+    left: "88%",
+    right: "auto",
+    bottom: "auto",
+    transform: "translate(-50%, -50%)",
+    height: "100%",
+    width: "400px",
   },
 };
 
 const ReservationManagement = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [datesArray,setDatesArray] = useState("")
-  let date = new Date();
+  const [datesArray, setDatesArray] = useState("");
+  const date = new Date();
   const MONTH = date.getMonth();
-  const [month, setMonth] = useState(MONTH+1);
+  const [month, setMonth] = useState(MONTH + 1);
   const YEAR = date.getFullYear();
   const [year, setYear] = useState(YEAR);
 
@@ -28,27 +29,24 @@ const ReservationManagement = () => {
   }, [month]);
 
   const openModal = () => {
-    setIsOpen(true);  
+    setIsOpen(true);
   };
   const closeModal = () => {
     setIsOpen(false);
   };
 
   const renderCalendar = () => {
-    if (month===13){
-      setMonth(1)
-      setYear(year+1)
-    }
-    else if(month===0){
-      setMonth(12)
-      setYear(year-1)
+    if (month === 13) {
+      setMonth(1);
+      setYear(year + 1);
+    } else if (month === 0) {
+      setMonth(12);
+      setYear(year - 1);
     }
 
-    document.querySelector(".year-month").textContent = `${year}년 ${
-      month
-    }월`;
+    document.querySelector(".year-month").textContent = `${year}년 ${month}월`;
 
-    const prevLast = new Date(year, month-1, 0);
+    const prevLast = new Date(year, month - 1, 0);
     const thisLast = new Date(year, month, 0);
 
     const PLDate = prevLast.getDate();
@@ -72,33 +70,30 @@ const ReservationManagement = () => {
 
     const dates = prevDates.concat(thisDates, nextDates);
 
-    const datesElement = dates.map((date, i) => {
+    const datesElement = dates.map((day, i) => {
       return (
-        <>
-        <div className="date" onClick={openModal} key={i}>
-          <div className="date-number">{date}</div>
-          <div className="case-number">(3건)  </div>
-        </div>
-        </>
+          <div className="date" key={i}>
+            <Day openModal={openModal} day={day} reservationNumber={Math.floor(Math.random() * 10)} />
+          </div>
       );
     });
-    setDatesArray(datesElement)
+    setDatesArray(datesElement);
   };
 
   const prevMonth = () => {
-    // date.setMonth(date.getMonth() - 1); 
-    setMonth(month-1)
-  }
+    setMonth(month - 1);  
+  };
 
   const nextMonth = () => {
-    // date.setMonth(date.getMonth() + 1);
-    setMonth(month+1);
-  }
+    setMonth(month + 1);
+  };
 
   const goToday = () => {
-    // date = new Date();
-    setMonth(MONTH+1);
-  }
+    const date = new Date();
+    const YEAR = date.getFullYear();
+    setYear(YEAR)
+    setMonth(MONTH + 1);
+  };
 
   return (
     <div>
@@ -139,10 +134,8 @@ const ReservationManagement = () => {
       <div>
         <Modal
           isOpen={modalIsOpen}
-          // onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1 style={{ paddingTop: "50px" }}>예약정보</h1>
@@ -181,7 +174,11 @@ const ReservationManagement = () => {
             <div>반려견</div>
             <div>추가1마리</div>
           </div>
-          <div className="etc">기타</div>
+          {/* <div className="etc">기타</div> */}
+          <div className="reservation-button-container">
+            <button className="reservation-cancle-button">예약취소</button>
+            <button className="reservation-confirmation-button">예약확정</button>
+          </div>
         </Modal>
       </div>
     </div>
@@ -189,4 +186,3 @@ const ReservationManagement = () => {
 };
 
 export default ReservationManagement;
-
