@@ -1,39 +1,47 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
+import axios from 'axios';
 import "./ReservationManagement.css";
 import Day from "../components/Day";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "88%",
-    right: "auto",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    height: "100%",
-    width: "400px",
-  },
-};
 
 const ReservationManagement = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
   const [datesArray, setDatesArray] = useState("");
+  const [reservationData,setReservationData] = useState([])
   const date = new Date();
   const MONTH = date.getMonth();
   const [month, setMonth] = useState(MONTH + 1);
   const YEAR = date.getFullYear();
   const [year, setYear] = useState(YEAR);
+  const LastDay = new Date(year, month, 0).getDate()
+
+  useEffect(() => {
+    bookingGetData()
+  }, [year,month]);
 
   useEffect(() => {
     renderCalendar();
-  }, [month]);
+  }, [reservationData]);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const bookingGetData = async()=> {
+    let month_
+    if(month<10){
+      month_ = `0${month}` 
+    }
+    else{
+      month_ = month.toString()
+    }
+
+    const startDt = `${year}-${month_}-01`
+    const endDt = `${year}-${month_}-${LastDay}`
+
+    try {
+      const result = await axios.get(`http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`)
+      setReservationData(result.data.data)
+      console.log(result.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const renderCalendar = () => {
     if (month === 13) {
@@ -55,6 +63,8 @@ const ReservationManagement = () => {
     const TLDate = thisLast.getDate();
     const TLDay = thisLast.getDay();
 
+
+
     const prevDates = [];
     const thisDates = [...Array(TLDate + 1).keys()].slice(1);
     const nextDates = [];
@@ -68,15 +78,37 @@ const ReservationManagement = () => {
       nextDates.push(i);
     }
 
+    console.log(prevDates.length)
     const dates = prevDates.concat(thisDates, nextDates);
 
-    const datesElement = dates.map((day, i) => {
-      return (
-          <div className="date" key={i}>
-            <Day openModal={openModal} day={day} reservationNumber={Math.floor(Math.random() * 10)} />
-          </div>
-      );
-    });
+    // console.log(reservationData)
+    let datesElement
+    if (reservationData.length !== 0) {
+      datesElement = dates.map((day, i) => {
+        if (i < prevDates.length) {
+          return (
+            <div className="date" key={i}>
+              <Day day={day}  reservationData={[]} />
+            </div>
+          );
+        }
+        else {
+          return (
+            <div className="date" key={i}>
+              <Day day={day} reservationData={reservationData[i-prevDates.length]} />
+            </div>
+          );
+        }
+      });
+    }
+
+    // const datesElement = dates.map((day, i) => {
+    //   return (
+    //     <div className="date" key={i}>
+    //       <Day day={day} reservationNumber={Math.floor(Math.random() * 10)}  reservationData={reservationData[i]}/>
+    //     </div>
+    //   );
+    // });
     setDatesArray(datesElement);
   };
 
@@ -132,54 +164,6 @@ const ReservationManagement = () => {
         </div>
       </div>
       <div>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h1 style={{ paddingTop: "50px" }}>예약정보</h1>
-            <div
-              onClick={closeModal}
-              style={{ cursor: "pointer", padding: "80px 10px 0 0" }}
-            >
-              <img
-                className="exit"
-                src={`${process.env.PUBLIC_URL}/assets/images/exit.png`}
-                alt="detail"
-              />
-            </div>
-          </div>
-          <div className="booker">김서은</div>
-          <div className="phone">01012345678</div>
-          <div className="place-name">멍멍하우스</div>
-          <div className="start-date">
-            <div>입실일</div> <div>2022.00.00(월)</div>
-          </div>
-          <div className="end-date">
-            <div>퇴실일</div>
-            <div>2022.00.00(화)</div>
-          </div>
-          <div className="people-number">
-            <div>인원수</div>
-            <div>2명</div>
-          </div>
-          <div className="added-people">
-            <div>인원추가</div> <div>1명</div>
-          </div>
-          <div className="dog-number">
-            <div>반려견수</div> <div>2마리</div>
-          </div>
-          <div className="added-dog">
-            <div>반려견</div>
-            <div>추가1마리</div>
-          </div>
-          {/* <div className="etc">기타</div> */}
-          <div className="reservation-button-container">
-            <button className="reservation-cancle-button">예약취소</button>
-            <button className="reservation-confirmation-button">예약확정</button>
-          </div>
-        </Modal>
       </div>
     </div>
   );

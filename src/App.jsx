@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
-          path="reservation-management"
+          path="pms"
           element={<ReservationManagement />}
         />
       </Routes>
