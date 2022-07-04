@@ -1,23 +1,82 @@
-import React from 'react'
+import React,{useState} from 'react'
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../redux/slices/userSlice';
+import {tokenActions} from'../redux/slices/tokenSlice';
 import './Login.css'
 
 function Login() {
+  const [email,setEmail] = useState("")
+  const [password,setPassWord] = useState("")
+  const dispatch = useDispatch();
+
+ const emailHandler = (e)=>{
+    setEmail(e.target.value)
+ }
+ const passwordHandler = (e)=>{
+  setPassWord(e.target.value)
+}
+
+  const loginHandler = async () => {
+    try {
+      const result = await axios.post(`http://49.50.161.156:8080/login`, {
+        email: email,
+        password: password,
+      });
+      const { code, data } = result.data;
+
+
+      if (code === 200) {
+        console.log(data)
+        dispatch(
+          userActions.signin({
+            user: {
+              adminId: data.adminId,
+              email: data.email,
+              name: data.name,
+              password: data.password,
+              phoneNo: data.phoneNo,
+              registDt: data.registDt
+            }
+          }),
+        );
+
+        const accessToken = result.headers.authorization_access;
+        const refreshToken = result.headers.authorization_refresh;
+        dispatch(
+          tokenActions.setToken(accessToken),
+        );
+        localStorage.setItem('refreshToken', refreshToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="background">
       <div>
         <div className="delgo-login">델고 로그인</div>
         <div>
-          <input className="input-id" type="text" placeholder="아이디" />
+          <input
+            className="input-id"
+            type="text"
+            placeholder="아이디"
+            value={email}
+            onChange={emailHandler}
+          />
         </div>
         <div>
           <input
             className="input-password"
-            type="text"
+            type="password"
             placeholder="비밀번호"
+            value={password}
+            onChange={passwordHandler}
           />
         </div>
         <div>
-          <button className="login-button">GO</button>
+          <button type="button" className="login-button" onClick={loginHandler}>GO</button>
         </div>
       </div>
     </div>

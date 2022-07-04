@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import {useSelector,useDispatch} from 'react-redux'
 import "./ReservationManagement.css";
 import Day from "../components/Day";
+import { userActions } from '../redux/slices/userSlice';
+import {tokenActions} from'../redux/slices/tokenSlice';
 
 
 const ReservationManagement = () => {
@@ -13,6 +16,8 @@ const ReservationManagement = () => {
   const YEAR = date.getFullYear();
   const [year, setYear] = useState(YEAR);
   const LastDay = new Date(year, month, 0).getDate()
+  const email = useSelector((state) => state.persist.user.user.email);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     bookingGetData()
@@ -81,7 +86,6 @@ const ReservationManagement = () => {
     console.log(prevDates.length)
     const dates = prevDates.concat(thisDates, nextDates);
 
-    // console.log(reservationData)
     let datesElement
     if (reservationData.length !== 0) {
       datesElement = dates.map((day, i) => {
@@ -101,14 +105,6 @@ const ReservationManagement = () => {
         }
       });
     }
-
-    // const datesElement = dates.map((day, i) => {
-    //   return (
-    //     <div className="date" key={i}>
-    //       <Day day={day} reservationNumber={Math.floor(Math.random() * 10)}  reservationData={reservationData[i]}/>
-    //     </div>
-    //   );
-    // });
     setDatesArray(datesElement);
   };
 
@@ -127,11 +123,19 @@ const ReservationManagement = () => {
     setMonth(MONTH + 1);
   };
 
+  const logoutHandler = () => {
+    dispatch(
+      userActions.signout(),
+      tokenActions.tokenInitialization()
+    );
+    localStorage.removeItem('refreshToken');
+  }
+
   return (
     <div>
       <div>
-        <div className="id">seoeun98@naver.com</div>
-        <div className="logout">로그아웃</div>
+        <div className="id">{email}</div>
+        <div className="logout" onClick={logoutHandler}>로그아웃</div>
       </div>
       <div className="body">
         <div className="calendar">

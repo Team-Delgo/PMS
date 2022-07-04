@@ -1,20 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isSignIn: false,
-  user: { id: 0, nickname: '', email: '', phone: '' },
-  pet: { name: '', petId: 0, birthday: '', size: '', weight: 0, image: '' },
+  user: {
+    adminId: 0,
+    email: "",
+    name: "",
+    password: "",
+    phoneNo: "",
+    registDt: "",
+  },
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     signin(state, action) {
       return {
         isSignIn: true,
         user: action.payload.user,
-        pet: action.payload.pet,
       };
     },
     signout() {
