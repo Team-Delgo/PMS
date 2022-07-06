@@ -7,15 +7,6 @@
   text-align: center;
   padding: 10px 0 0 5px;
 }
-.reservation-button{
-  cursor: pointer;
-  border: none;
-  text-align: center;
-  margin:auto;
-  display:block;
-  margin-top: 15px;
-  height: 35px;
-}
 .booker,.phone,.place-name,.start-date,.end-date,.people-number,.added-people,.dog-number,.added-dog,.etc{
   color: #474747;
   padding-top: 30px;
@@ -33,25 +24,4 @@
 }
 .place-name,.people-number{
   padding-top: 30px;
-}
-.reservation-cancle-button{
-  width: 50%;
-  background: #D9D9D9;
-  border: none;
-  height: 60px;
-  color: #3E382F;
-  font-weight: 700;
-  font-size: 15px;
-}
-.reservation-confirmation-button{
-  width: 50%;
-  background: #FF9162;
-  border: none;
-  height: 60px;
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 15px;
-}
-.reservation-button-container{
-  padding-top: 50px;
 }
