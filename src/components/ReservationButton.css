@@ -1,0 +1,49 @@
+.reservation-button-wait{
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    margin:auto;
+    display:block;
+    margin-top: 15px;
+    height: 35px;
+  }
+  .reservation-button-fix{
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    margin:auto;
+    display:block;
+    margin-top: 15px;
+    height: 35px;
+    background-color:rgb(95, 182, 249);
+  }
+  .reservation-button-container{
+    padding-top: 50px;
+  }
+  .reservation-cancle-button{
+    width: 50%;
+    background: #D9D9D9;
+    border: none;
+    height: 60px;
+    color: #3E382F;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .reservation-cancle-button-fix{
+    width: 100%;
+    background: #D9D9D9;
+    border: none;
+    height: 60px;
+    color: #3E382F;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .reservation-confirmation-button{
+    width: 50%;
+    background: #FF9162;
+    border: none;
+    height: 60px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 15px;
+  }

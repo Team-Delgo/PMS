@@ -19,6 +19,8 @@ function Login() {
 
   const loginHandler = async () => {
     try {
+      console.log(email)
+      console.log(password)
       const result = await axios.post(`http://49.50.161.156:8080/login`, {
         email: email,
         password: password,

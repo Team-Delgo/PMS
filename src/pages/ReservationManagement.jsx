@@ -27,17 +27,19 @@ const ReservationManagement = () => {
     renderCalendar();
   }, [reservationData]);
 
-  const bookingGetData = async()=> {
+  const bookingGetData = async () => {
     let month_
-    if(month<10){
-      month_ = `0${month}` 
+    if (month < 10) {
+      month_ = `0${month}`
     }
-    else{
+    else {
       month_ = month.toString()
     }
 
     const startDt = `${year}-${month_}-01`
     const endDt = `${year}-${month_}-${LastDay}`
+    console.log(startDt)
+    console.log(endDt)
 
     try {
       const result = await axios.get(`http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`)
@@ -85,9 +87,10 @@ const ReservationManagement = () => {
 
     console.log(prevDates.length)
     const dates = prevDates.concat(thisDates, nextDates);
+    console.log(reservationData)
 
     let datesElement
-    if (reservationData.length !== 0) {
+    if (reservationData !== null) {
       datesElement = dates.map((day, i) => {
         if (i < prevDates.length) {
           return (

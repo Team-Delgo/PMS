@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import axios from 'axios';
+import './ReservationButton.css'
 
 const customStyles = {
     content: {
@@ -29,10 +31,23 @@ function ReservationButton({ place, index }) {
         setIsOpen(false);
     };
 
+    const reservationConfirm = async () => {
+        try {
+            console.log(place.bookingId)
+            const result = await axios.post(`http://49.50.161.156:8080/pms/booking/confirm/${place.bookingId}`)
+            console.log(result)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div style={{ marginBottom: "30px" }}>
-                <button className="reservation-button" onClick={openModal}>{index + 1}.{place.placeName} {place.userName}</button>
+                {
+                    place.bookingState === "F" ? <button className="reservation-button-fix" onClick={openModal}>{index + 1}.{place.placeName} {place.userName}</button>
+                    : <button className="reservation-button-wait" onClick={openModal}>{index + 1}.{place.placeName} {place.userName}</button>
+                }
             </div>
             <Modal
                 isOpen={modalIsOpen}
@@ -79,8 +94,11 @@ function ReservationButton({ place, index }) {
                 </div>
                 <div className="etc">기타</div>
                 <div className="reservation-button-container">
-                    <button className="reservation-cancle-button">예약취소</button>
-                    <button className="reservation-confirmation-button">예약확정</button>
+                    {
+                        place.bookingState === "F" ? <button className="reservation-cancle-button-fix">예약취소</button>
+                            : <><button className="reservation-cancle-button">예약취소</button>
+                                <button className="reservation-confirmation-button" onClick={reservationConfirm}>예약확정</button></>
+                    }
                 </div>
             </Modal>
         </>
