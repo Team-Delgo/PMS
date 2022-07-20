@@ -90,7 +90,7 @@ const ReservationManagement = () => {
     console.log(reservationData)
 
     let datesElement
-    if (reservationData.length !== 0) {
+    if (reservationData !== null) {
       datesElement = dates.map((day, i) => {
         if (i < prevDates.length) {
           return (
