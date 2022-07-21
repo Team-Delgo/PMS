@@ -15,7 +15,27 @@
     display:block;
     margin-top: 15px;
     height: 35px;
-    background-color:rgb(95, 182, 249);
+    background-color:rgb(154, 203, 241);
+  }
+  .reservation-button-cancle{
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    margin:auto;
+    display:block;
+    margin-top: 15px;
+    height: 35px;
+    background-color:rgb(208, 180, 180);
+  }
+  .reservation-button-comple{
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    margin:auto;
+    display:block;
+    margin-top: 15px;
+    height: 35px;
+    background-color:rgb(110, 109, 109);
   }
   .reservation-button-container{
     padding-top: 50px;
