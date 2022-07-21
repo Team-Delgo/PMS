@@ -54,7 +54,10 @@ function ReservationButton({ place, index }) {
             {index + 1}.{place.placeName} {place.userName}
           </button>
         ) : place.bookingState === "CW" ? (
-          <button className="reservation-button-cancle" onClick={openModal}>
+          <button
+            className="reservation-button-cancle-wait"
+            onClick={openModal}
+          >
             {index + 1}.{place.placeName} {place.userName}
           </button>
         ) : place.bookingState === "CF" ? (
@@ -100,7 +103,7 @@ function ReservationButton({ place, index }) {
         <div className="reservation-button-container">
           {place.bookingState === "F" ? (
             <button className="reservation-cancle-button-fix">예약취소</button>
-          ) : place.bookingState === "W" ?(
+          ) : place.bookingState === "W" ? (
             <>
               <button className="reservation-cancle-button">예약취소</button>
               <button
@@ -110,6 +113,8 @@ function ReservationButton({ place, index }) {
                 예약확정
               </button>
             </>
+          ) : place.bookingState === "CW" ? (
+            <button className="reservation-cancle-button-fix">예약취소</button>
           ) : null}
         </div>
       </Modal>

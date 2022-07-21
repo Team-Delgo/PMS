@@ -17,6 +17,16 @@
     height: 35px;
     background-color:rgb(154, 203, 241);
   }
+  .reservation-button-cancle-wait{
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    margin:auto;
+    display:block;
+    margin-top: 15px;
+    height: 35px;
+    background-color:rgb(233, 220, 220);
+  }
   .reservation-button-cancle{
     cursor: pointer;
     border: none;
