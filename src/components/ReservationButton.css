@@ -6,6 +6,7 @@
     display:block;
     margin-top: 15px;
     height: 35px;
+    background-color: #FF9162;
   }
   .reservation-button-fix{
     cursor: pointer;
@@ -15,7 +16,7 @@
     display:block;
     margin-top: 15px;
     height: 35px;
-    background-color:rgb(154, 203, 241);
+    background-color: #00B860
   }
   .reservation-button-cancle-wait{
     cursor: pointer;
@@ -25,7 +26,7 @@
     display:block;
     margin-top: 15px;
     height: 35px;
-    background-color:rgb(233, 220, 220);
+    background-color:#FF2063;
   }
   .reservation-button-cancle{
     cursor: pointer;
@@ -35,7 +36,7 @@
     display:block;
     margin-top: 15px;
     height: 35px;
-    background-color:rgb(208, 180, 180);
+    background-color: #8A8A8A;
   }
   .reservation-button-comple{
     cursor: pointer;
@@ -45,7 +46,7 @@
     display:block;
     margin-top: 15px;
     height: 35px;
-    background-color:rgb(110, 109, 109);
+    background-color:#3083FF;
   }
   .reservation-button-container{
     padding-top: 50px;

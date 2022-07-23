@@ -28,27 +28,28 @@ const ReservationManagement = () => {
   }, [reservationData]);
 
   const bookingGetData = async () => {
-    let month_
+    let month_;
     if (month < 10) {
-      month_ = `0${month}`
-    }
-    else {
-      month_ = month.toString()
+      month_ = `0${month}`;
+    } else {
+      month_ = month.toString();
     }
 
-    const startDt = `${year}-${month_}-01`
-    const endDt = `${year}-${month_}-${LastDay}`
-    console.log(startDt)
-    console.log(endDt)
+    const startDt = `${year}-${month_}-01`;
+    const endDt = `${year}-${month_}-${LastDay}`;
+    console.log(startDt);
+    console.log(endDt);
 
     try {
-      const result = await axios.get(`http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`)
-      setReservationData(result.data.data)
-      console.log(result.data.data)
+      const result = await axios.get(
+        `http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`
+      );
+      setReservationData(result.data.data);
+      console.log(result.data.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const renderCalendar = () => {
     if (month === 13) {
@@ -70,8 +71,6 @@ const ReservationManagement = () => {
     const TLDate = thisLast.getDate();
     const TLDay = thisLast.getDay();
 
-
-
     const prevDates = [];
     const thisDates = [...Array(TLDate + 1).keys()].slice(1);
     const nextDates = [];
@@ -85,24 +84,26 @@ const ReservationManagement = () => {
       nextDates.push(i);
     }
 
-    console.log(prevDates.length)
+    console.log(prevDates.length);
     const dates = prevDates.concat(thisDates, nextDates);
-    console.log(reservationData)
+    console.log(reservationData);
 
-    let datesElement
+    let datesElement;
     if (reservationData !== null) {
       datesElement = dates.map((day, i) => {
         if (i < prevDates.length) {
           return (
             <div className="date" key={i}>
-              <Day day={day}  reservationData={[]} />
+              <Day day={day} reservationData={[]} />
             </div>
           );
-        }
-        else {
+        } else {
           return (
             <div className="date" key={i}>
-              <Day day={day} reservationData={reservationData[i-prevDates.length]} />
+              <Day
+                day={day}
+                reservationData={reservationData[i - prevDates.length]}
+              />
             </div>
           );
         }
