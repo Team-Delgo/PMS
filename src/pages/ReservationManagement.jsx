@@ -6,7 +6,6 @@ import Day from "../components/Day";
 import { userActions } from '../redux/slices/userSlice';
 import {tokenActions} from'../redux/slices/tokenSlice';
 
-
 const ReservationManagement = () => {
   const [datesArray, setDatesArray] = useState("");
   const [reservationData,setReservationData] = useState([])
