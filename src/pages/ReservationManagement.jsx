@@ -83,12 +83,12 @@ const ReservationManagement = () => {
       nextDates.push(i);
     }
 
-    console.log(prevDates.length);
+    // console.log(prevDates.length);
     const dates = prevDates.concat(thisDates, nextDates);
     console.log(reservationData);
 
     let datesElement;
-    if (reservationData !== null) {
+    if (reservationData!==null) {
       datesElement = dates.map((day, i) => {
         if (i < prevDates.length) {
           return (

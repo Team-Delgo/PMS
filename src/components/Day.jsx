@@ -8,7 +8,7 @@ import ReservationButton from "./ReservationButton";
 function Day({ day, reservationData }) {
 
   useEffect(()=>{
-    console.log(reservationData)
+    // console.log(reservationData)
   },[])
 
   // function reservationButtons() {
