@@ -41,6 +41,17 @@ function ReservationButton({ place, index }) {
     }
   };
 
+  const reservationCancle = async () => {
+    try {
+      const result = await axios.post(
+        `http://49.50.161.156:8080/pms/booking/cancle/${place.bookingId}`
+      );
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div style={{ marginBottom: "30px" }}>
@@ -101,10 +112,10 @@ function ReservationButton({ place, index }) {
         <div className="etc">기타</div>
         <div className="reservation-button-container">
           {place.bookingState === "F" ? (
-            <button className="reservation-cancle-button-fix">예약취소</button>
+            <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
           ) : place.bookingState === "W" ? (
             <>
-              <button className="reservation-cancle-button">예약취소</button>
+              <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button>
               <button
                 className="reservation-confirmation-button"
                 onClick={reservationConfirm}
@@ -113,7 +124,7 @@ function ReservationButton({ place, index }) {
               </button>
             </>
           ) : place.bookingState === "CW" ? (
-            <button className="reservation-cancle-button-fix">예약취소</button>
+            <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
           ) : null}
         </div>
       </Modal>
