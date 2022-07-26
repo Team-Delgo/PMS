@@ -43,11 +43,13 @@ function ReservationButton({ place, index }) {
   };
 
   const reservationCancle = async () => {
+    console.log(place.bookingId)
     try {
       const result = await axios.post(
-        `http://pms.delgo.pet:8080/pms/booking/cancel/${place.bookingId}`
+        `http://pms.delgo.pet:8080/pms/booking/cancel/confirm/${place.bookingId}`
       );
       console.log(result);
+      closeModal()
     } catch (error) {
       console.log(error);
     }
