@@ -33,8 +33,9 @@ function ReservationButton({ place, index }) {
   const reservationConfirm = async () => {
     try {
       const result = await axios.post(
-        `http://49.50.161.156:8080/pms/booking/confirm/${place.bookingId}`
+        `http://pms.delgo.pet:8080/pms/booking/confirm/${place.bookingId}`
       );
+      console.log(result)
       closeModal()
     } catch (error) {
       console.log(error);
@@ -44,7 +45,7 @@ function ReservationButton({ place, index }) {
   const reservationCancle = async () => {
     try {
       const result = await axios.post(
-        `http://49.50.161.156:8080/pms/booking/cancle/${place.bookingId}`
+        `http://pms.delgo.pet:8080/pms/booking/cancel/${place.bookingId}`
       );
       console.log(result);
     } catch (error) {
