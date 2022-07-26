@@ -115,7 +115,8 @@ function ReservationButton({ place, index }) {
         <div className="etc">기타</div>
         <div className="reservation-button-container">
           {place.bookingState === "F" ? (
-            <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
+            null
+            // <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
           ) : place.bookingState === "W" ? (
             <>
               <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button>
