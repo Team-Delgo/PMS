@@ -43,11 +43,13 @@ function ReservationButton({ place, index }) {
   };
 
   const reservationCancle = async () => {
+    console.log(place.bookingId)
     try {
       const result = await axios.post(
-        `http://pms.delgo.pet:8080/pms/booking/cancel/${place.bookingId}`
+        `http://pms.delgo.pet:8080/pms/booking/cancel/confirm/${place.bookingId}`
       );
       console.log(result);
+      closeModal()
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +115,8 @@ function ReservationButton({ place, index }) {
         <div className="etc">기타</div>
         <div className="reservation-button-container">
           {place.bookingState === "F" ? (
-            <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
+            null
+            // <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
           ) : place.bookingState === "W" ? (
             <>
               <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button>
