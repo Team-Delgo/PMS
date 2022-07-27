@@ -5,6 +5,12 @@ import "./ReservationManagement.css";
 import Day from "../components/Day";
 import { userActions } from '../redux/slices/userSlice';
 import {tokenActions} from'../redux/slices/tokenSlice';
+import { ReactComponent as ReservationCancelRequest } from '../icons/reservation-cancel-request.svg';
+import { ReactComponent as ReservationRequest } from '../icons/reservation-request.svg';
+import { ReactComponent as ReservationCancelConfirm } from '../icons/reservation-cancel-confirm.svg';
+import { ReactComponent as ReservationConfirm } from '../icons/reservation-confirm.svg';
+import { ReactComponent as ReservationCompleted } from '../icons/reservation-completed.svg';
+import { ReactComponent as ReservationIng } from '../icons/reservation-ing.svg';
 
 const ReservationManagement = () => {
   const [datesArray, setDatesArray] = useState("");
@@ -144,6 +150,14 @@ const ReservationManagement = () => {
         <div className="calendar">
           <div className="header">
             <div className="year-month"></div>
+            <div>
+              <ReservationRequest />
+              <ReservationConfirm  />
+              <ReservationCancelRequest />
+              <ReservationCancelConfirm />
+              <ReservationIng />
+              <ReservationCompleted  />
+            </div>
             <div className="nav">
               <button className="nav-btn go-prev" onClick={prevMonth}>
                 &lt;
