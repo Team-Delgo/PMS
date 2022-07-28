@@ -79,7 +79,7 @@ function ReservationButton({ place, index }) {
           </button>
         ) : (
           <button className="reservation-button-comple" onClick={openModal}>
-            {index + 1}.{place.placeName} {place.userName}
+            {index + 1}.{place.placeName} {place.reservedName}
           </button>
         )}
       </div>
