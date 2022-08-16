@@ -60,22 +60,22 @@ function ReservationButton({ place, index }) {
       <div style={{ marginBottom: "30px" }}>
         {place.bookingState === "F" ? (
           <button className="reservation-button-fix" onClick={openModal}>
-            {index + 1}.{place.placeName} {place.userName}
+            {index + 1}.{place.placeName} {place.reservedName}
           </button>
         ) : place.bookingState === "W" ? (
           <button className="reservation-button-wait" onClick={openModal}>
-            {index + 1}.{place.placeName} {place.userName}
+            {index + 1}.{place.placeName} {place.reservedName}
           </button>
         ) : place.bookingState === "CW" ? (
           <button
             className="reservation-button-cancle-wait"
             onClick={openModal}
           >
-            {index + 1}.{place.placeName} {place.userName}
+            {index + 1}.{place.placeName} {place.reservedName}
           </button>
         ) : place.bookingState === "CF" ? (
           <button className="reservation-button-cancle" onClick={openModal}>
-            {index + 1}.{place.placeName} {place.userName}
+            {index + 1}.{place.placeName} {place.reservedName}
           </button>
         ) : (
           <button className="reservation-button-comple" onClick={openModal}>
