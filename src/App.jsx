@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import Login from './pages/Login';
-import ReservationManagement from './pages/ReservationManagement';
+import Main from './pages/Main';
 import './App.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Routes>
           {
-            isLoggedIn ? <Route path="/" element={<ReservationManagement />} />
+            isLoggedIn ? <Route path="/" element={<Main />} />
             : <Route path="/" element={<Login />} />
           }
         </Routes>

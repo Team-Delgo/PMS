@@ -1,3 +1,7 @@
+.day-background{
+  display: flex;
+  text-align: center;
+}
 .day-number{
   font-weight: bold;
   padding: 10px 0 0 10px;

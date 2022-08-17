@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useCallback} from 'react'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../redux/slices/userSlice';
@@ -10,26 +10,21 @@ function Login() {
   const [password,setPassWord] = useState("")
   const dispatch = useDispatch();
 
- const emailHandler = (e)=>{
+ const emailHandler = useCallback((e)=>{
     setEmail(e.target.value)
- }
- const passwordHandler = (e)=>{
+ },[])
+ const passwordHandler = useCallback((e)=>{
   setPassWord(e.target.value)
-}
+},[])
 
   const loginHandler = async () => {
     try {
-      console.log(email)
-      console.log(password)
       const result = await axios.post(`http://49.50.161.156:8080/login`, {
         email: email,
         password: password,
       });
       const { code, data } = result.data;
-
-
       if (code === 200) {
-        console.log(data)
         dispatch(
           userActions.signin({
             user: {
@@ -42,7 +37,6 @@ function Login() {
             }
           }),
         );
-
         const accessToken = result.headers.authorization_access;
         const refreshToken = result.headers.authorization_refresh;
         dispatch(
@@ -54,7 +48,6 @@ function Login() {
       console.log(error);
     }
   };
-
   return (
     <div className="background">
       <div>

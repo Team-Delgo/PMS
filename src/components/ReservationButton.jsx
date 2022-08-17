@@ -4,24 +4,20 @@ import axios from 'axios';
 import './ReservationButton.css'
 
 const customStyles = {
-    content: {
-        top: "50%",
-        left: "82%",
-        right: "auto",
-        bottom: "auto",
-        transform: "translate(-50%, -50%)",
-        height: "100%",
-        width: "400px",
-    },
+  content: {
+    top: "50%",
+    left: "82%",
+    right: "auto",
+    bottom: "auto",
+    transform: "translate(-50%, -50%)",
+    height: "100%",
+    width: "400px",
+  },
 };
 
 
 function ReservationButton({ place, index }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(place);
-  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -32,10 +28,9 @@ function ReservationButton({ place, index }) {
 
   const reservationConfirm = async () => {
     try {
-      const result = await axios.post(
+      await axios.post(
         `http://pms.delgo.pet:8080/pms/booking/confirm/${place.bookingId}`
       );
-      console.log(result)
       closeModal()
     } catch (error) {
       console.log(error);
@@ -43,12 +38,10 @@ function ReservationButton({ place, index }) {
   };
 
   const reservationCancle = async () => {
-    console.log(place.bookingId)
     try {
-      const result = await axios.post(
+      await axios.post(
         `http://pms.delgo.pet:8080/pms/booking/cancel/confirm/${place.bookingId}`
       );
-      console.log(result);
       closeModal()
     } catch (error) {
       console.log(error);
@@ -57,7 +50,7 @@ function ReservationButton({ place, index }) {
 
   return (
     <>
-      <div style={{ marginBottom: "30px" }}>
+      <div className="reservation-button-background">
         {place.bookingState === "F" ? (
           <button className="reservation-button-fix" onClick={openModal}>
             {index + 1}.{place.placeName} {place.reservedName}
@@ -88,11 +81,11 @@ function ReservationButton({ place, index }) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <h1 style={{ paddingTop: "10px" }}>예약정보</h1>
+        <div className="reservation-data-background">
+          <h1 className="reservation-data-header">예약정보</h1>
           <div
             onClick={closeModal}
-            style={{ cursor: "pointer", padding: "40px 10px 0 0" }}
+            className="reservation-data-close-modal"
           >
             <img
               className="exit"
@@ -116,10 +109,9 @@ function ReservationButton({ place, index }) {
         <div className="reservation-button-container">
           {place.bookingState === "F" ? (
             null
-            // <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
           ) : place.bookingState === "W" ? (
             <>
-              <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button>
+              {/* <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button> */}
               <button
                 className="reservation-confirmation-button"
                 onClick={reservationConfirm}
