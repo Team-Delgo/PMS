@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import {useSelector,useDispatch} from 'react-redux'
-import "./ReservationManagement.css";
+import "./Main.css";
 import Day from "../components/Day";
 import { userActions } from '../redux/slices/userSlice';
 import {tokenActions} from'../redux/slices/tokenSlice';
@@ -12,7 +12,7 @@ import { ReactComponent as ReservationConfirm } from '../icons/reservation-confi
 import { ReactComponent as ReservationCompleted } from '../icons/reservation-completed.svg';
 import { ReactComponent as ReservationIng } from '../icons/reservation-ing.svg';
 
-const ReservationManagement = () => {
+const Main = () => {
   const [datesArray, setDatesArray] = useState("");
   const [reservationData,setReservationData] = useState([])
   const date = new Date();
@@ -39,12 +39,8 @@ const ReservationManagement = () => {
     } else {
       month_ = month.toString();
     }
-
     const startDt = `${year}-${month_}-01`;
     const endDt = `${year}-${month_}-${LastDay}`;
-    console.log(startDt);
-    console.log(endDt);
-
     try {
       const result = await axios.get(
         `http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`
@@ -89,9 +85,7 @@ const ReservationManagement = () => {
       nextDates.push(i);
     }
 
-    // console.log(prevDates.length);
     const dates = prevDates.concat(thisDates, nextDates);
-    console.log(reservationData);
 
     let datesElement;
     if (reservationData!==null) {
@@ -190,4 +184,4 @@ const ReservationManagement = () => {
   );
 };
 
-export default ReservationManagement;
+export default Main;

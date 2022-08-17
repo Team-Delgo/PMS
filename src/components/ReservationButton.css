@@ -1,3 +1,17 @@
+.reservation-data-background{
+  display: flex;
+  justify-content: space-between;
+}
+.reservation-data-header{
+  padding-top: 10px;
+}
+.reservation-data-close-modal{
+  cursor: pointer;
+  padding: 40px 10px 0 0;
+}
+.reservation-button-background{
+  margin-bottom: 30px;
+}
 .reservation-button-wait{
     cursor: pointer;
     border: none;
@@ -75,7 +89,7 @@
     font-size: 15px;
   }
   .reservation-confirmation-button{
-    width: 50%;
+    width: 100%;
     background: #FF9162;
     border: none;
     height: 60px;
