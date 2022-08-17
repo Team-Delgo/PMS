@@ -43,7 +43,7 @@ const Main = () => {
     const endDt = `${year}-${month_}-${LastDay}`;
     try {
       const result = await axios.get(
-        `http://49.50.161.156:8080/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`
+        `${process.env.REACT_APP_API_URL}/pms/booking/getData?startDt=${startDt}&endDt=${endDt}`
       );
       setReservationData(result.data.data);
       console.log(result.data.data);

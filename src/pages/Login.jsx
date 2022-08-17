@@ -19,7 +19,7 @@ function Login() {
 
   const loginHandler = async () => {
     try {
-      const result = await axios.post(`http://49.50.161.156:8080/login`, {
+      const result = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         email: email,
         password: password,
       });

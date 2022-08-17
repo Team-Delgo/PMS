@@ -29,7 +29,7 @@ function ReservationButton({ place, index }) {
   const reservationConfirm = async () => {
     try {
       await axios.post(
-        `http://pms.delgo.pet:8080/pms/booking/confirm/${place.bookingId}`
+        `${process.env.REACT_APP_API_URL}pms/booking/confirm/${place.bookingId}`
       );
       closeModal()
     } catch (error) {
@@ -40,7 +40,7 @@ function ReservationButton({ place, index }) {
   const reservationCancle = async () => {
     try {
       await axios.post(
-        `http://pms.delgo.pet:8080/pms/booking/cancel/confirm/${place.bookingId}`
+        `${process.env.REACT_APP_API_URL}/pms/booking/cancel/confirm/${place.bookingId}`
       );
       closeModal()
     } catch (error) {
@@ -111,7 +111,6 @@ function ReservationButton({ place, index }) {
             null
           ) : place.bookingState === "W" ? (
             <>
-              {/* <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button> */}
               <button
                 className="reservation-confirmation-button"
                 onClick={reservationConfirm}
