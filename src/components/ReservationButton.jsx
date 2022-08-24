@@ -117,6 +117,7 @@ function ReservationButton({ place, index }) {
               >
                 예약확정
               </button>
+              <button className="reservation-cancle-button" onClick={reservationCancle}>예약취소</button>
             </>
           ) : place.bookingState === "CW" ? (
             <button className="reservation-cancle-button-fix" onClick={reservationCancle}>예약취소</button>
