@@ -11,6 +11,7 @@ import { ReactComponent as ReservationCancelConfirm } from '../icons/reservation
 import { ReactComponent as ReservationConfirm } from '../icons/reservation-confirm.svg';
 import { ReactComponent as ReservationCompleted } from '../icons/reservation-completed.svg';
 import { ReactComponent as ReservationIng } from '../icons/reservation-ing.svg';
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const [datesArray, setDatesArray] = useState("");
@@ -23,6 +24,7 @@ const Main = () => {
   const LastDay = new Date(year, month, 0).getDate()
   const email = useSelector((state) => state.persist.user.user.email);
   const dispatch = useDispatch();
+  const navigate = useNavigate() 
 
   useEffect(() => {
     bookingGetData()
@@ -134,11 +136,16 @@ const Main = () => {
     localStorage.removeItem('refreshToken');
   }
 
+  const moveToMungPlaceRegistrationPage = () => {
+    navigate("mungple")
+  }
+
   return (
     <div>
       <div>
         <div className="id">{email}</div>
         <div className="logout" onClick={logoutHandler}>로그아웃</div>
+        <div className="logout" onClick={moveToMungPlaceRegistrationPage}>멍플등록</div>
       </div>
       <div className="body">
         <div className="calendar">

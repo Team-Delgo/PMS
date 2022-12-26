@@ -23,6 +23,7 @@ function Login() {
         email: email,
         password: password,
       });
+      console.log('result',result)
       const { code, data } = result.data;
       if (code === 200) {
         dispatch(
